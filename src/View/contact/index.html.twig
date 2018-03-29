@@ -1,0 +1,22 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+
+
+
+        {% for contact in contact %}
+        {% for civil in civility %}
+        {% if civil.ID == contact.civility_id %}
+        <tr>
+            <td> {{ civil.civility }}</td>
+            <td>{{ contact.lastname }} {{ contact.firstname }}</td>
+          </tr>
+
+        {% endif %}
+        {% endfor %}
+        {% endfor %}
+
+
+    </table>
+
+{% endblock %}
