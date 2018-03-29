@@ -25,7 +25,6 @@ class ContactController extends AbstractController
      */
     public function index()
     {
-        var_dump($_POST);
         $ContactManager = new contactManager();
         $contact = $ContactManager->findAll();
 

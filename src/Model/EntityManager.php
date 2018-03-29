@@ -57,14 +57,19 @@ abstract class EntityManager
      */
     public function insert($lastname, $firstname, $civility)
     {
-      $statement = $this->conn->prepare("INSERT INTO contact VALUES (firstname=:firstname, lastname=:lastname)");
-      $statement = $this->conn->prepare("INSERT INTO civility VALUES (civility=:civility");
-      $statement->bindValue('firstname', $firstname);
-      $statement->bindValue('civility', $civility);
-      $statement->bindValue('lastname', $lastname);
-      $statement->execute();
 
-      return $statement->fetch(\PDO::FETCH_ASSOC);
+        $statement = $this->conn->prepare("INSERT INTO contact(lastname, firstname, civility_id) VALUES (:firstname,:lastname,:civility);");
+    //  $statement = $this->conn->prepare("INSERT INTO civility VALUES (civility=:civility");
+
+        $statement->bindValue(':civility', $civility, \PDO::PARAM_INT);
+        $statement->bindValue(':lastname', $lastname, \PDO::PARAM_STR);
+        $statement->bindValue(':firstname', $firstname, \PDO::PARAM_STR);
+
+        $statement->execute();
+    //    return $statement->fetch(\PDO::FETCH_ASSOC);
+
+
+
 
     }
 
