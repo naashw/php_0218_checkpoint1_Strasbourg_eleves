@@ -55,9 +55,17 @@ abstract class EntityManager
     /**
      *
      */
-    public function insert($data)
+    public function insert($lastname, $firstname, $civility)
     {
-        //TODO : Implements SQL INSERT request
+      $statement = $this->conn->prepare("INSERT INTO contact VALUES (firstname=:firstname, lastname=:lastname)");
+      $statement = $this->conn->prepare("INSERT INTO civility VALUES (civility=:civility");
+      $statement->bindValue('firstname', $firstname);
+      $statement->bindValue('civility', $civility);
+      $statement->bindValue('lastname', $lastname);
+      $statement->execute();
+
+      return $statement->fetch(\PDO::FETCH_ASSOC);
+
     }
 
 

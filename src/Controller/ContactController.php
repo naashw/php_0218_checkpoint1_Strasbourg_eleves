@@ -10,6 +10,8 @@ namespace Controller;
 
 use Model\Contact;
 use Model\ContactManager;
+use Model\Civility;
+use Model\CivilityManager;
 
 /**
  * Class contactController
@@ -23,10 +25,22 @@ class ContactController extends AbstractController
      */
     public function index()
     {
+        var_dump($_POST);
         $ContactManager = new contactManager();
         $contact = $ContactManager->findAll();
 
-        return $this->twig->render('contact/index.html.twig', ['contact' => $contact]);
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+          $ContactManager = new contactManager();
+          $contact = $ContactManager->insert("$_POST[lastname]", "$_POST[firstname]", "$_POST[civility]");
+        }
+        $ContactManager = new contactManager();
+        $contact = $ContactManager->findAll();
+
+        $CivilityManager = new civilityManager();
+        $civility = $CivilityManager->findAll();
+
+
+        return $this->twig->render('contact/index.html.twig', ['contact' => $contact , 'civility' => $civility]);
     }
 
     /**
@@ -58,7 +72,7 @@ class ContactController extends AbstractController
     public function add()
     {
         // TODO : add a new contact
-        return $this->twig->render('contact/add.html.twig');
+        return $this->twig->render('contact/index.html.twig');
     }
 
     /**
