@@ -6,3 +6,22 @@ td, th /* Mettre une bordure sur les td ET les th */
 {
     border: 1px solid black;
 }
+
+.form-control {
+  display:inline-block;
+  width: 30%;
+}
+
+select{
+  height: 30px;
+}
+
+.nameBdd{
+  width: 35%;
+}
+
+table{
+
+width: 80%;
+
+}

@@ -47,9 +47,14 @@ abstract class EntityManager
     /**
      *
      */
-    public function delete($id)
+    public function delete($ID)
     {
-        //TODO : Implements SQL DELETE request
+      $statement = $this->conn->prepare("DELETE FROM contact WHERE ID = :ID;");
+  //  $statement = $this->conn->prepare("INSERT INTO civility VALUES (civility=:civility");
+
+      $statement->bindValue(':ID', $ID, \PDO::PARAM_INT);
+      $statement->execute();
+      header('Location:/');
     }
 
     /**
@@ -66,6 +71,7 @@ abstract class EntityManager
         $statement->bindValue(':firstname', $firstname, \PDO::PARAM_STR);
 
         $statement->execute();
+        header('Location:/');
     //    return $statement->fetch(\PDO::FETCH_ASSOC);
 
 

@@ -28,12 +28,8 @@ class ContactController extends AbstractController
         $ContactManager = new contactManager();
         $contact = $ContactManager->findAll();
 
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-          $ContactManager = new contactManager();
-          $contact = $ContactManager->insert("$_POST[lastname]", "$_POST[firstname]", "$_POST[civility]");
-        }
-        $ContactManager = new contactManager();
-        $contact = $ContactManager->findAll();
+
+
 
         $CivilityManager = new civilityManager();
         $civility = $CivilityManager->findAll();
@@ -70,7 +66,10 @@ class ContactController extends AbstractController
      */
     public function add()
     {
-        // TODO : add a new contact
+      if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $ContactManager = new contactManager();
+        $contact = $ContactManager->insert("$_POST[lastname]", "$_POST[firstname]", "$_POST[civility]");
+      }
         return $this->twig->render('contact/index.html.twig');
     }
 
@@ -78,9 +77,12 @@ class ContactController extends AbstractController
      * @param $id
      * @return string
      */
-    public function delete(int $id)
+    public function delete()
     {
-        // TODO : delete the contact with id $id
+      if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $ContactManager = new contactManager();
+        $contact = $ContactManager->delete("$_POST[ID]");
+      }
         return $this->twig->render('contact/index.html.twig');
     }
 }

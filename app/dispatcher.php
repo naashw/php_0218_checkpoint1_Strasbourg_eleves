@@ -11,7 +11,8 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     $r->addRoute('GET', '/', 'Contact/index');
     // {id} must be a number (\d+)
 
-    $r->addRoute('POST', '/add', 'Contact/index');
+    $r->addRoute('POST', '/add', 'Contact/add');
+    $r->addRoute('POST', '/delete', 'Contact/delete');
 });
 
 // Fetch method and URI from somewhere

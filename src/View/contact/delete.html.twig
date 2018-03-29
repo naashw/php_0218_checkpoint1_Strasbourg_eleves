@@ -1,0 +1,26 @@
+{% if contact %}
+
+
+<form class="" action="/delete" method="post">
+
+<label for="">Supprimer de la base de donnée :</label>
+
+
+
+<select class="nameBdd" name="ID">
+	{% for contact in contact %}
+	{% for civil in civility %}
+	{% if civil.ID == contact.civility_id %}
+
+		<option value="{{ contact.ID }}">  {{ civil.civility }} {{ contact.lastname|upper }} {{ contact.firstname[:1]|upper ~ contact.firstname[1:]|lower }}
+
+	{% endif %}
+	{% endfor %}
+	{% endfor %}
+
+</select>
+
+<input type="submit" name="" value="Supprimer" class="btn-danger">
+
+</form>
+{% endif %}
