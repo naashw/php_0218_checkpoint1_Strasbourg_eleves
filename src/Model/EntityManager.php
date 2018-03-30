@@ -63,7 +63,7 @@ abstract class EntityManager
     public function insert($lastname, $firstname, $civility)
     {
 
-        $statement = $this->conn->prepare("INSERT INTO contact(lastname, firstname, civility_id) VALUES (:firstname,:lastname,:civility);");
+        $statement = $this->conn->prepare("INSERT INTO contact(lastname, firstname, civility_id) VALUES (:lastname,:firstname,:civility);");
     //  $statement = $this->conn->prepare("INSERT INTO civility VALUES (civility=:civility");
 
         $statement->bindValue(':civility', $civility, \PDO::PARAM_INT);
